@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPedidoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPedidoLabel_idPedido}" for="idPedido" />
+                    <h:inputText id="idPedido" value="#{pedidoController.selected.idPedido}" title="#{bundle.EditPedidoTitle_idPedido}" required="true" requiredMessage="#{bundle.EditPedidoRequiredMessage_idPedido}"/>
+                    <h:outputLabel value="#{bundle.EditPedidoLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{pedidoController.selected.cantidad}" title="#{bundle.EditPedidoTitle_cantidad}" />
+                    <h:outputLabel value="#{bundle.EditPedidoLabel_numeroOrden}" for="numeroOrden" />
+                    <h:inputText id="numeroOrden" value="#{pedidoController.selected.numeroOrden}" title="#{bundle.EditPedidoTitle_numeroOrden}" />
+                    <h:outputLabel value="#{bundle.EditPedidoLabel_proveedor}" for="proveedor" />
+                    <h:inputText id="proveedor" value="#{pedidoController.selected.proveedor}" title="#{bundle.EditPedidoTitle_proveedor}" />
+                </h:panelGrid>
+                <h:commandLink action="#{pedidoController.update}" value="#{bundle.EditPedidoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPedidoViewLink}"/>
+                <br />
+                <h:commandLink action="#{pedidoController.prepareList}" value="#{bundle.EditPedidoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/dashboard" value="#{bundle.EditPedidoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

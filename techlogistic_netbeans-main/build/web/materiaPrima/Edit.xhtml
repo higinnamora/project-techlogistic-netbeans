@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMateriaPrimaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMateriaPrimaLabel_idMateriaPrima}" for="idMateriaPrima" />
+                    <h:inputText id="idMateriaPrima" value="#{materiaPrimaController.selected.idMateriaPrima}" title="#{bundle.EditMateriaPrimaTitle_idMateriaPrima}" required="true" requiredMessage="#{bundle.EditMateriaPrimaRequiredMessage_idMateriaPrima}"/>
+                    <h:outputLabel value="#{bundle.EditMateriaPrimaLabel_cantidadMateria}" for="cantidadMateria" />
+                    <h:inputText id="cantidadMateria" value="#{materiaPrimaController.selected.cantidadMateria}" title="#{bundle.EditMateriaPrimaTitle_cantidadMateria}" />
+                    <h:outputLabel value="#{bundle.EditMateriaPrimaLabel_colorMateria}" for="colorMateria" />
+                    <h:inputText id="colorMateria" value="#{materiaPrimaController.selected.colorMateria}" title="#{bundle.EditMateriaPrimaTitle_colorMateria}" />
+                    <h:outputLabel value="#{bundle.EditMateriaPrimaLabel_peso}" for="peso" />
+                    <h:inputText id="peso" value="#{materiaPrimaController.selected.peso}" title="#{bundle.EditMateriaPrimaTitle_peso}" />
+                    <h:outputLabel value="#{bundle.EditMateriaPrimaLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{materiaPrimaController.selected.precio}" title="#{bundle.EditMateriaPrimaTitle_precio}" />
+                    <h:outputLabel value="#{bundle.EditMateriaPrimaLabel_textura}" for="textura" />
+                    <h:inputText id="textura" value="#{materiaPrimaController.selected.textura}" title="#{bundle.EditMateriaPrimaTitle_textura}" />
+                    <h:outputLabel value="#{bundle.EditMateriaPrimaLabel_pedidoIdPedido}" for="pedidoIdPedido" />
+                    <h:selectOneMenu id="pedidoIdPedido" value="#{materiaPrimaController.selected.pedidoIdPedido}" title="#{bundle.EditMateriaPrimaTitle_pedidoIdPedido}" >
+                        <f:selectItems value="#{pedidoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{materiaPrimaController.update}" value="#{bundle.EditMateriaPrimaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMateriaPrimaViewLink}"/>
+                <br />
+                <h:commandLink action="#{materiaPrimaController.prepareList}" value="#{bundle.EditMateriaPrimaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/dashboard" value="#{bundle.EditMateriaPrimaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

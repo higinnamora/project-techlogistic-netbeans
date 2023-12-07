@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditStockTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditStockLabel_idStock}" for="idStock" />
+                    <h:inputText id="idStock" value="#{stockController.selected.idStock}" title="#{bundle.EditStockTitle_idStock}" required="true" requiredMessage="#{bundle.EditStockRequiredMessage_idStock}"/>
+                    <h:outputLabel value="#{bundle.EditStockLabel_cantidadStock}" for="cantidadStock" />
+                    <h:inputText id="cantidadStock" value="#{stockController.selected.cantidadStock}" title="#{bundle.EditStockTitle_cantidadStock}" />
+                    <h:outputLabel value="#{bundle.EditStockLabel_descripcionStock}" for="descripcionStock" />
+                    <h:inputText id="descripcionStock" value="#{stockController.selected.descripcionStock}" title="#{bundle.EditStockTitle_descripcionStock}" />
+                    <h:outputLabel value="#{bundle.EditStockLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{stockController.selected.estado}" title="#{bundle.EditStockTitle_estado}" />
+                    <h:outputLabel value="#{bundle.EditStockLabel_productosCodigoProducto}" for="productosCodigoProducto" />
+                    <h:selectOneMenu id="productosCodigoProducto" value="#{stockController.selected.productosCodigoProducto}" title="#{bundle.EditStockTitle_productosCodigoProducto}" required="true" requiredMessage="#{bundle.EditStockRequiredMessage_productosCodigoProducto}">
+                        <f:selectItems value="#{productosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{stockController.update}" value="#{bundle.EditStockSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditStockViewLink}"/>
+                <br />
+                <h:commandLink action="#{stockController.prepareList}" value="#{bundle.EditStockShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/dashboard" value="#{bundle.EditStockIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

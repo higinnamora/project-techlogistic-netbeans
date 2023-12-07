@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDetalleordenVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDetalleordenVentaLabel_idDetalleordenVenta}"/>
+                    <h:outputText value="#{detalleordenVentaController.selected.idDetalleordenVenta}" title="#{bundle.ViewDetalleordenVentaTitle_idDetalleordenVenta}"/>
+                    <h:outputText value="#{bundle.ViewDetalleordenVentaLabel_cantidadProductos}"/>
+                    <h:outputText value="#{detalleordenVentaController.selected.cantidadProductos}" title="#{bundle.ViewDetalleordenVentaTitle_cantidadProductos}"/>
+                    <h:outputText value="#{bundle.ViewDetalleordenVentaLabel_descuento}"/>
+                    <h:outputText value="#{detalleordenVentaController.selected.descuento}" title="#{bundle.ViewDetalleordenVentaTitle_descuento}"/>
+                    <h:outputText value="#{bundle.ViewDetalleordenVentaLabel_medioPago}"/>
+                    <h:outputText value="#{detalleordenVentaController.selected.medioPago}" title="#{bundle.ViewDetalleordenVentaTitle_medioPago}"/>
+                    <h:outputText value="#{bundle.ViewDetalleordenVentaLabel_observacion}"/>
+                    <h:outputText value="#{detalleordenVentaController.selected.observacion}" title="#{bundle.ViewDetalleordenVentaTitle_observacion}"/>
+                    <h:outputText value="#{bundle.ViewDetalleordenVentaLabel_subTotal}"/>
+                    <h:outputText value="#{detalleordenVentaController.selected.subTotal}" title="#{bundle.ViewDetalleordenVentaTitle_subTotal}"/>
+                    <h:outputText value="#{bundle.ViewDetalleordenVentaLabel_total}"/>
+                    <h:outputText value="#{detalleordenVentaController.selected.total}" title="#{bundle.ViewDetalleordenVentaTitle_total}"/>
+                    <h:outputText value="#{bundle.ViewDetalleordenVentaLabel_ordenventaidordenventa}"/>
+                    <h:outputText value="#{detalleordenVentaController.selected.ordenventaidordenventa}" title="#{bundle.ViewDetalleordenVentaTitle_ordenventaidordenventa}"/>
+                    <h:outputText value="#{bundle.ViewDetalleordenVentaLabel_productosCodigoProducto}"/>
+                    <h:outputText value="#{detalleordenVentaController.selected.productosCodigoProducto}" title="#{bundle.ViewDetalleordenVentaTitle_productosCodigoProducto}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detalleordenVentaController.destroyAndView}" value="#{bundle.ViewDetalleordenVentaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDetalleordenVentaEditLink}"/>
+                <br />
+                <h:commandLink action="#{detalleordenVentaController.prepareCreate}" value="#{bundle.ViewDetalleordenVentaCreateLink}" />
+                <br />
+                <h:commandLink action="#{detalleordenVentaController.prepareList}" value="#{bundle.ViewDetalleordenVentaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/dashboard" value="#{bundle.ViewDetalleordenVentaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

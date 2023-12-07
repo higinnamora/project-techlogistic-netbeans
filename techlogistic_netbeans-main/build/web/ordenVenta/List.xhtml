@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOrdenVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListOrdenVentaEmpty}" rendered="#{ordenVentaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ordenVentaController.items.rowCount > 0}">
+                    <h:outputText value="#{ordenVentaController.pagination.pageFirstItem + 1}..#{ordenVentaController.pagination.pageLastItem + 1}/#{ordenVentaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ordenVentaController.previous}" value="#{bundle.Previous} #{ordenVentaController.pagination.pageSize}" rendered="#{ordenVentaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ordenVentaController.next}" value="#{bundle.Next} #{ordenVentaController.pagination.pageSize}" rendered="#{ordenVentaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ordenVentaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenVentaTitle_idOrdenVenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOrdenVenta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenVentaTitle_fechaVenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaVenta}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenVentaTitle_personasIdPersona}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.personasIdPersona}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ordenVentaController.prepareView}" value="#{bundle.ListOrdenVentaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ordenVentaController.prepareEdit}" value="#{bundle.ListOrdenVentaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ordenVentaController.destroy}" value="#{bundle.ListOrdenVentaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ordenVentaController.prepareCreate}" value="#{bundle.ListOrdenVentaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/dashboard" value="#{bundle.ListOrdenVentaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

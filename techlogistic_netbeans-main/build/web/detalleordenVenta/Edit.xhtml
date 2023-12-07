@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDetalleordenVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDetalleordenVentaLabel_idDetalleordenVenta}" for="idDetalleordenVenta" />
+                    <h:inputText id="idDetalleordenVenta" value="#{detalleordenVentaController.selected.idDetalleordenVenta}" title="#{bundle.EditDetalleordenVentaTitle_idDetalleordenVenta}" required="true" requiredMessage="#{bundle.EditDetalleordenVentaRequiredMessage_idDetalleordenVenta}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleordenVentaLabel_cantidadProductos}" for="cantidadProductos" />
+                    <h:inputText id="cantidadProductos" value="#{detalleordenVentaController.selected.cantidadProductos}" title="#{bundle.EditDetalleordenVentaTitle_cantidadProductos}" />
+                    <h:outputLabel value="#{bundle.EditDetalleordenVentaLabel_descuento}" for="descuento" />
+                    <h:inputText id="descuento" value="#{detalleordenVentaController.selected.descuento}" title="#{bundle.EditDetalleordenVentaTitle_descuento}" />
+                    <h:outputLabel value="#{bundle.EditDetalleordenVentaLabel_medioPago}" for="medioPago" />
+                    <h:inputText id="medioPago" value="#{detalleordenVentaController.selected.medioPago}" title="#{bundle.EditDetalleordenVentaTitle_medioPago}" />
+                    <h:outputLabel value="#{bundle.EditDetalleordenVentaLabel_observacion}" for="observacion" />
+                    <h:inputText id="observacion" value="#{detalleordenVentaController.selected.observacion}" title="#{bundle.EditDetalleordenVentaTitle_observacion}" />
+                    <h:outputLabel value="#{bundle.EditDetalleordenVentaLabel_subTotal}" for="subTotal" />
+                    <h:inputText id="subTotal" value="#{detalleordenVentaController.selected.subTotal}" title="#{bundle.EditDetalleordenVentaTitle_subTotal}" />
+                    <h:outputLabel value="#{bundle.EditDetalleordenVentaLabel_total}" for="total" />
+                    <h:inputText id="total" value="#{detalleordenVentaController.selected.total}" title="#{bundle.EditDetalleordenVentaTitle_total}" />
+                    <h:outputLabel value="#{bundle.EditDetalleordenVentaLabel_ordenventaidordenventa}" for="ordenventaidordenventa" />
+                    <h:selectOneMenu id="ordenventaidordenventa" value="#{detalleordenVentaController.selected.ordenventaidordenventa}" title="#{bundle.EditDetalleordenVentaTitle_ordenventaidordenventa}" required="true" requiredMessage="#{bundle.EditDetalleordenVentaRequiredMessage_ordenventaidordenventa}">
+                        <f:selectItems value="#{ordenVentaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetalleordenVentaLabel_productosCodigoProducto}" for="productosCodigoProducto" />
+                    <h:selectOneMenu id="productosCodigoProducto" value="#{detalleordenVentaController.selected.productosCodigoProducto}" title="#{bundle.EditDetalleordenVentaTitle_productosCodigoProducto}" required="true" requiredMessage="#{bundle.EditDetalleordenVentaRequiredMessage_productosCodigoProducto}">
+                        <f:selectItems value="#{productosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{detalleordenVentaController.update}" value="#{bundle.EditDetalleordenVentaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDetalleordenVentaViewLink}"/>
+                <br />
+                <h:commandLink action="#{detalleordenVentaController.prepareList}" value="#{bundle.EditDetalleordenVentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/dashboard" value="#{bundle.EditDetalleordenVentaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
